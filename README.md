@@ -16,6 +16,8 @@ The primary goal of this project is to leverage NRCan's comprehensive furnace da
 
 - **Phase 2**: Advanced clustering and pattern analysis
   - `NRCan_Statcan_CFD_Clustering.ipynb`: Detailed clustering analysis of particle behaviors
+  - `Data Pipeline/etl.py`: Complete ETL pipeline for processing raw CFD data through to cluster analysis
+  - `Data Pipeline/README.md`: Detailed documentation of the ETL process and output files
 
 - **Applications**:
   - `cfd_clustering_app.py`: Streamlit application for interactive cluster analysis of CFD data
@@ -24,6 +26,13 @@ The primary goal of this project is to leverage NRCan's comprehensive furnace da
   - `final_states_clean.parquet`: Clean dataset of particle states for analysis
 
 ## Applications
+
+### ETL Pipeline
+- Complete data processing pipeline for CFD simulation data
+- Extracts parameters from filenames, calculates physics-based states, and performs clustering
+- Creates multiple output files for different analysis stages
+- Run with: `python Phase\ 2/Data\ Pipeline/etl.py`
+- Outputs can be used with visualization tools and Streamlit applications
 
 ### CFD Clustering Application
 - Interactive analysis of particle behavior in CFD simulations
