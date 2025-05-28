@@ -7,7 +7,7 @@ all: figures
 
 # Configuration
 OUTPUT_DIR = figures
-DATA_FILE = final_states_clean.parquet
+DATA_FILE = final_states_with_clusters.csv
 ALGORITHM = Spectral
 CLUSTERS = 100
 FEATURES = primary_flow pressure density particle_feed diameter

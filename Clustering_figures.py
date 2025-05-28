@@ -38,13 +38,12 @@ SINGLE_COLUMN_SIZE = (3.5, 3.5)
 FULL_WIDTH_SIZE = (7.5, 5)
 
 def load_data(data_path):
-    df = pd.read_parquet(data_path)
+    df = pd.read_csv(data_path)
     def rename_column(col):
-        if col.startswith("first_"): return col[len("first_"):]
-        elif col.startswith("last_"): return col[len("last_"):]
-        return col.replace("proportion", "%")
+        if col.startswith("proportion_"): return col.replace("proportion_", "proportion ")
+        return col
     df = df.rename(columns=rename_column)
-    state_mapping = {0: 'penetrating', 1: 'oscillating', 2: 'bouncing'}
+    state_mapping = {'penetrating': 'penetrating', 'oscillating': 'oscillating', 'bouncing': 'bouncing'}
     df["state"] = df["state"].map(state_mapping)
     return df
 
@@ -89,7 +88,7 @@ def export_feature_correlations(df, features, output_dir, width='single', featur
             corr.loc[f, s] = combined_data[f].corr(combined_data[s])
     fig, ax = plt.subplots(figsize=fig_size)
     sns.heatmap(corr, annot=True, fmt=".2f", cmap=sns.diverging_palette(220, 10, as_cmap=True), center=0, square=True,
-                linewidths=.5, cbar_kws={"shrink": .8}, ax=ax)
+                linewidths=.5, cbar_kws={"shrink": .8, "label": "Correlation Coefficient"}, ax=ax)
     if feature_labels and len(feature_labels) == len(corr.index): ax.set_yticklabels(feature_labels, rotation=0)
     ax.set_title('Feature-State Correlations')
     plt.tight_layout()
@@ -226,7 +225,7 @@ def export_parallel_plot(df, features, output_dir, width='full', feature_labels=
 
 def main():
     parser = argparse.ArgumentParser(description='Export journal-quality figures from CFD data')
-    parser.add_argument('--data', type=str, default='final_states_clean.parquet', help='Path to the parquet data file')
+    parser.add_argument('--data', type=str, default='final_states_clean.csv', help='Path to the CSV data file')
     parser.add_argument('--output', type=str, default='figures', help='Directory to save output figures')
     parser.add_argument('--features', type=str, nargs='+', default=['diameter', 'density', 'mass', 'vm', 'pressure', 'primary_flow', 'particle_feed'], help='Feature columns to use for analysis')
     parser.add_argument('--labels', type=str, nargs='+', default=None, help='Custom labels for features (same order as features)')

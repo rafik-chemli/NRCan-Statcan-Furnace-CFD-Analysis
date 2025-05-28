@@ -1,0 +1,17 @@
+Figure Captions
+==============
+
+Figure 1: Distribution of particle states in the CFD simulation. The dataset contains 11000 particles distributed across 3 states (oscillating, penetrating, bouncing).
+
+Figure 2: Correlation heatmap between particle features and states. Positive values (red) indicate positive correlation, while negative values (blue) indicate inverse correlation.
+
+Figure 3: Proportion of particle states within each of the 100 clusters. The stacked bar chart shows how particles with different states (bouncing, oscillating, penetrating) are distributed across the 100 identified clusters.
+
+Figure 4: UMAP dimensionality reduction visualization of the particle feature space. Points are colored by particle state.
+
+Figure 5: Standardized feature values by particle state. Bars show the mean value for each feature across states.
+
+Figure 6: Feature patterns across the 100 clusters. The heatmap shows the standardized mean values for each feature.
+
+Figure 7: Parallel coordinates plot of standardized feature values by state.
+
